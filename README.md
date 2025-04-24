@@ -3,6 +3,8 @@
 🧠 Simple Math Quiz App (Android - Java)
 A basic Android app built using Java and XML that helps users practice simple addition and multiplication problems. It also keeps track of correct and wrong answers.
 
+-----------------------------------------------------------------------
+
 
 **📲 Features**
 
@@ -17,6 +19,9 @@ Result feedback (Correct / Wrong)
 Auto-generate new question after each answer
 
 
+
+------------------------------------------------------------------
+
 **🛠 Tech Stack**
 
 Language: Java
@@ -27,6 +32,8 @@ Layout: XML with LinearLayout
 
 Min SDK: API 21 (Lollipop) or above
 
+
+-------------------------------------------------------------------------
 
 
 
@@ -43,7 +50,7 @@ Min SDK: API 21 (Lollipop) or above
 
 
 
-
+-----------------------------------------------------------------------------------------------------
 
 
 **📁 Files Included**
@@ -53,6 +60,8 @@ MainActivity.java – Java class with logic for the app
 activity_main.xml – XML layout for UI
 
 
+
+-----------------------------------------------------------------------
 
 
 **🔄 How it Works**
@@ -71,6 +80,10 @@ A new question is shown immediately.
 
 
 
+-------------------------------------------------------------------------------
+
+
+
 **💡 Code Highlights**
 
 Random random = new Random();
@@ -78,6 +91,7 @@ num1 = random.nextInt(10) + 1;
 num2 = random.nextInt(10) + 1;
 correctAnswer = isAddition ? num1 + num2 : num1 * num2;
 
+---------------------------------------------------------------------
 
 **Answer Check Logic:**
 
@@ -93,7 +107,7 @@ if (answer == correctAnswer) {
 
 
 
-
+--------------------------------------------------------------------------------
 
 **🔹 Class Declaration**
 
@@ -121,6 +135,7 @@ btnSubmit = findViewById(R.id.btnSubmit);
 tvResult = findViewById(R.id.tvResult);
 tvCorrectCount = findViewById(R.id.tvCorrectCount);
 tvWrongCount = findViewById(R.id.tvWrongCount);
+
 ---------------------------------------------------------
 
 
