@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-
+---------------------------------------------------------------------------------------
 
 
     private void generateQuestion() {
@@ -65,7 +65,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
+-------------------------------------------------------------------------------------------------
 
 
 
@@ -93,14 +93,14 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-
+-----------------------------------------------------------------------------------------------------
 
     // Method to update the TextViews for correct and wrong answers
     private void updateCounts() {
         tvCorrectCount.setText("Correct: " + correctAnswers);
         tvWrongCount.setText("Wrong: " + wrongAnswers);
     }
-
+----------------------------------------------------------------------------------------------------------------
 
     // Method to hide the keyboard
     private void hideKeyboard() {
