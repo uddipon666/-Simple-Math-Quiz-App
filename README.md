@@ -18,6 +18,10 @@ Result feedback (Correct / Wrong)
 
 Auto-generate new question after each answer
 
+![Alt text](1.jpeg)   ![Alt text](2.jpeg)    ![Alt text](3.jpeg)  
+
+  
+
 
 
 ------------------------------------------------------------------
