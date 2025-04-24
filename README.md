@@ -92,3 +92,142 @@ if (answer == correctAnswer) {
 
 
 
+
+
+
+**🔹 Class Declaration**
+
+public class MainActivity extends AppCompatActivity {
+
+
+**🔹 Variables Defined**
+TextView tvQuestion, tvResult, tvCorrectCount, tvWrongCount;
+EditText etAnswer;
+LinearLayout btnSubmit;
+int num1, num2, correctAnswer;
+int correctAnswers = 0;
+int wrongAnswers = 0;
+String currentOperation;
+
+------------------------------------------
+**🔹 onCreate() Method**
+This runs when the app starts:
+
+setContentView(R.layout.activity_main) loads the layout XML file that contains your UI design.
+
+tvQuestion = findViewById(R.id.tvQuestion);
+etAnswer = findViewById(R.id.etAnswer);
+btnSubmit = findViewById(R.id.btnSubmit);
+tvResult = findViewById(R.id.tvResult);
+tvCorrectCount = findViewById(R.id.tvCorrectCount);
+tvWrongCount = findViewById(R.id.tvWrongCount);
+---------------------------------------------------------
+
+
+These lines connect your Java variables to the UI elements in the XML layout.
+
+**generateQuestion();**
+Generates the first random question.
+
+btnSubmit.setOnClickListener(new View.OnClickListener() {
+    @Override
+    public void onClick(View v) {
+        checkAnswer();
+        hideKeyboard();
+    }
+});
+
+
+When the user clicks the submit button:
+
+1. It checks the answer.
+2. Hides the keyboard.
+
+------------------------------------------------
+
+
+**🔹 generateQuestion() Method**
+
+Random random = new Random();
+num1 = random.nextInt(10) + 1;
+num2 = random.nextInt(10) + 1;
+*Creates two random numbers between 1 and 10.
+
+
+**Randomly decides whether to use addition or multiplication**
+
+if (isAddition) {
+    currentOperation = "addition";
+    correctAnswer = num1 + num2;
+    tvQuestion.setText(num1 + " + " + num2 + " = ?");
+} else {
+    currentOperation = "multiplication";
+    correctAnswer = num1 * num2;
+    tvQuestion.setText(num1 + " * " + num2 + " = ?");
+}
+
+-----------------------------------------------------------------------------
+
+**🔹 checkAnswer() Method**
+
+String userAnswer = etAnswer.getText().toString();
+if (!userAnswer.isEmpty()) {
+    int answer = Integer.parseInt(userAnswer);
+Takes the input from the user and converts it to an integer.
+
+if (answer == correctAnswer) {
+    tvResult.setText("Correct! 🎉");
+    correctAnswers++;
+} else {
+    tvResult.setText("Wrong! Try again.");
+    wrongAnswers++;
+}
+
+*Compares the user's answer and updates the result text.
+
+*Also increases the correct or wrong answer count.
+
+
+updateCounts();
+generateQuestion();
+etAnswer.setText("");
+
+*Updates the correct/wrong counters.
+Generates a new question.
+Clears the input field for the next answer.
+
+-------------------------------------------------------------------------------------
+
+
+**🔹 updateCounts() Method**
+
+tvCorrectCount.setText("Correct: " + correctAnswers);
+tvWrongCount.setText("Wrong: " + wrongAnswers);
+
+**🔹 hideKeyboard() Method**
+
+InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+if (imm != null && getCurrentFocus() != null) {
+    imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+}
+
+Hides the on-screen keyboard when the submit button is pressed.
+
+
+**✅ In Short:**
+This is a simple math quiz Android app that:
+
+Randomly asks either addition or multiplication questions.
+
+Takes user input, checks if it’s correct or wrong.
+
+Updates the score.
+
+Gives feedback and creates a new question.
+
+
+
+
+
+
+
