@@ -1,0 +1,112 @@
+package com.techrexit.mathquizapp;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
+import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.TextView;
+import androidx.appcompat.app.AppCompatActivity;
+import java.util.Random;
+
+public class MainActivity extends AppCompatActivity {
+    TextView tvQuestion, tvResult, tvCorrectCount, tvWrongCount;
+    EditText etAnswer;
+    LinearLayout btnSubmit;
+    int num1, num2, correctAnswer;
+    int correctAnswers = 0;  // Variable to count correct answers
+    int wrongAnswers = 0;    // Variable to count wrong answers
+    String currentOperation;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+
+
+        tvQuestion = findViewById(R.id.tvQuestion);
+        etAnswer = findViewById(R.id.etAnswer);
+        btnSubmit = findViewById(R.id.btnSubmit);
+        tvResult = findViewById(R.id.tvResult);
+        tvCorrectCount = findViewById(R.id.tvCorrectCount);
+        tvWrongCount = findViewById(R.id.tvWrongCount);
+
+        generateQuestion();
+
+        btnSubmit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                checkAnswer();
+                hideKeyboard();  // Hide the keyboard when the button is clicked
+            }
+        });
+    }
+
+
+
+
+    private void generateQuestion() {
+        Random random = new Random();
+        num1 = random.nextInt(10) + 1; // Random number between 1 and 10
+        num2 = random.nextInt(10) + 1;
+
+        // Randomly choose the operation: either addition or multiplication
+        boolean isAddition = random.nextBoolean(); // Randomly returns true or false
+        if (isAddition) {
+            currentOperation = "addition";
+            correctAnswer = num1 + num2;
+            tvQuestion.setText(num1 + " + " + num2 + " = ?");
+        } else {
+            currentOperation = "multiplication";
+            correctAnswer = num1 * num2;
+            tvQuestion.setText(num1 + " * " + num2 + " = ?");
+        }
+    }
+
+
+
+
+
+
+
+
+
+
+
+    private void checkAnswer() {
+        String userAnswer = etAnswer.getText().toString();
+        if (!userAnswer.isEmpty()) {
+            int answer = Integer.parseInt(userAnswer);
+            if (answer == correctAnswer) {
+                tvResult.setText("Correct! 🎉");
+                correctAnswers++;  // Increment correct answer count
+            } else {
+                tvResult.setText("Wrong! Try again.");
+                wrongAnswers++;    // Increment wrong answer count
+            }
+            updateCounts();  // Update the correct and wrong answer counts
+            generateQuestion(); // Generate a new question
+            etAnswer.setText(""); // Clear the input field
+        } else {
+            tvResult.setText("Please enter an answer.");
+        }
+    }
+
+
+
+    // Method to update the TextViews for correct and wrong answers
+    private void updateCounts() {
+        tvCorrectCount.setText("Correct: " + correctAnswers);
+        tvWrongCount.setText("Wrong: " + wrongAnswers);
+    }
+
+
+    // Method to hide the keyboard
+    private void hideKeyboard() {
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        if (imm != null && getCurrentFocus() != null) {
+            imm.hideSoftInputFromWindow(getCurrentFocus().getWindowToken(), 0);
+        }
+    }
+}
